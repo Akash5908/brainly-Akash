@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const zod_1 = require("zod");
-const models_1 = __importDefault(require("../models"));
+const models_1 = require("../models");
 const router = express_1.default.Router();
 const User = zod_1.z.object({
     username: zod_1.z.string(),
@@ -27,7 +27,7 @@ router.post("/signup", (req, res) => {
             res.status(400).send(error);
         }
         else {
-            const user = models_1.default.create({
+            const user = models_1.Users.create({
                 username: username,
                 password: password,
             });

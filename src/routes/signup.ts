@@ -1,6 +1,7 @@
 import express, { Response, Request } from "express";
 import { z } from "zod";
-import Signup from "../models";
+import { Users } from "../models";
+
 const router = express.Router();
 
 const User = z.object({
@@ -24,7 +25,7 @@ router.post("/signup", (req: Request, res: Response) => {
       const error = validation.error?.errors[0].message;
       res.status(400).send(error);
     } else {
-      const user = Signup.create({
+      const user = Users.create({
         username: username,
         password: password,
       });

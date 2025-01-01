@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { string } from "zod";
 
 const Schema = mongoose.Schema;
 
@@ -7,6 +8,15 @@ const signupSchema = new Schema({
   password: String,
 });
 
-const Signup = mongoose.model("user", signupSchema);
+const contentSchema = new Schema({
+  link: String,
+  type: String,
+  title: String,
+  tags: [{ id: String }],
+  userId: String,
+});
 
-export default Signup;
+const Content = mongoose.model("content", contentSchema);
+const Users = mongoose.model("user", signupSchema);
+
+export { Users, Content };
